@@ -1,6 +1,6 @@
 // Create a callback function and invoke the function to test your work. You have been provided an example of a problem and a solution to see how this works with our items array.  Study both the problem and the solution to figure out the rest of the problems.
 // Quick ccmment for initial commimt
-const items = ["Pencil", "Notebook", "yo-yo", "Gum"];
+const items = ["Pencil", "Notebook", "yo-yo", "Gum", "Pencil"];
 
 /* 
 
@@ -66,10 +66,10 @@ multiplyNums(2, 2, function(multipledItems) {
 function contains(item, list, cb) {
   for (let i = 0; i < list.length; i++) {
     if (list[i] === item) {
-      return true;
+      return cb(true);
     }
   }
-  return false;
+  return cb(false);
 }
 
 contains("Pencil", items, function(result) {
@@ -79,7 +79,15 @@ contains("Pencil", items, function(result) {
 /* STRETCH PROBLEM */
 
 function removeDuplicates(array, cb) {
-  // removeDuplicates removes all duplicate values from the given array.
-  // Pass the duplicate free array to the callback function.
-  // Do not mutate the original array.
+  let noDupes = [];
+  array.forEach(function(element) {
+    if (noDupes.indexOf(element) === -1) {
+      noDupes.push(element);
+    }
+  });
+  return cb(noDupes); 
 }
+
+removeDuplicates(items, function(result) { 
+  console.log(result);
+});
